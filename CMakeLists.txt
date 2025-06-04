@@ -5,6 +5,14 @@ project (DASH)
 
 find_package(EXPAT REQUIRED)
 
+#Conan2 compatibility
+if (TARGET expat::expat)
+    get_target_property(_expat_includes expat::expat INTERFACE_INCLUDE_DIRECTORIES)
+    set(EXPAT_INCLUDE_DIRS ${_expat_includes})
+    set(EXPAT_LIBRARIES expat::expat)
+endif()
+
+
 include_directories(include)
 include_directories(manifest)
 
